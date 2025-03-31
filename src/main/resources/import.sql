@@ -1,2 +1,3 @@
-CREATE TABLE IF NOT EXISTS `role` (`id_role` bigint NOT NULL AUTO_INCREMENT, `role_name` varchar(255) DEFAULT NULL)
-INSERT INTO `role` (`role_name`) VALUES ('VISITOR'), ('ADMINISTRATOR');
+
+-- Listage des données de la table alapage_db.role : ~2 rows (environ)
+INSERT INTO `role` (`id_role`, `role_name`) VALUES (1, 'VISITOR'),(2, 'ADMINISTRATOR');

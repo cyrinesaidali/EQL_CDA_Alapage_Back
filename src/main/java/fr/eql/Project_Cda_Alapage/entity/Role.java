@@ -3,12 +3,15 @@ package fr.eql.Project_Cda_Alapage.entity;
 import fr.eql.Project_Cda_Alapage.entity.enums.RoleName;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="Role")
 public class Role {
-    /////////////////
-    /// Attributs ///
-    /////////////////
+/////////////////
+/// Attributs ///
+/////////////////
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +21,9 @@ public class Role {
     @Enumerated(EnumType.STRING)
     RoleName roleName;
 
+////// Jointures avec JPA :
+    @ManyToMany(mappedBy = "rolesList", cascade = CascadeType.ALL)
+    private List <User> userList = new ArrayList<>();
 
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
@@ -42,7 +48,9 @@ public class Role {
         return roleName.toString();
     }
 
-    //////////////////////////////
+//////////////////////////////
 ///SETTER -  ///
 //////////////////////////////
+
+
 }

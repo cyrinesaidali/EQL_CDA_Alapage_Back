@@ -1,23 +1,28 @@
-## PROJET CDA - APPLICATION ALAPAGE 
+## PROJET CDA - APPLICATION ALAPAGE
 
-### 
-- 
-- 
-cccccc
-
-## ENDPOINTS:
+## ENDPOINTS
 Starts by: /api/rest
-## Authentification
-1. Authenticate using user already registered in the system (DB)
-/connection/authenticate
-POST: send credentials
+
+
+## Security : 1 - Authentification - ADMIN : 
+/api/rest/security/register
+- POST: Put the credentials of the admin :
 {
-"email":"example@mail.mdr",
-"password":"theSecretWord"
+"id_utilisateur" : "1",
+"adresse_utilisateur" : "a",
+"naissance_utilisateur":1997-01-25,
+"email":"aaa",
+"nom_utilisateur":"Cycy",
+"mdp":"aaaaaa",
+"telephone_utilisateur":144411,
+"raison_ferme_utilisateur":"",
+"prenom_utilisateur":"ddddd",
+"roleName":"ADMINISTRATOR"
 }
+
+
 ## User details
-2.1 Register user in the system (DB)\
-/user/registration\
+
 POST:\
 {
 "name":"myName",

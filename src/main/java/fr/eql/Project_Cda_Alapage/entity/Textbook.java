@@ -46,6 +46,8 @@ public class Textbook {
     @Column(name="annee_edition_manuel")
     private Date yearEditionTextbook;
 
+
+////// Jointures avec JPA :
     @ManyToMany(mappedBy = "textbookList", cascade = CascadeType.ALL)
     private List<Order> orderList = new ArrayList<>();
 
@@ -57,6 +59,9 @@ public class Textbook {
     @JoinColumn(name = "id_editeur")
     private EditorTextbook editorTextbook;
 
+    @OneToMany(mappedBy = "textbook", fetch = FetchType.LAZY)
+    private List<OrderLine> orderLineList = new ArrayList<>();
+
 //    private Date dateRegistrationTextbook;
 
 
@@ -64,13 +69,25 @@ public class Textbook {
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
-
+    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, String isbn, Date yearEditionTextbook, User user, EditorTextbook editorTextbook) {
+        this.idTextbook = idTextbook;
+        this.priceTextbook = priceTextbook;
+        this.referenceTextbook = referenceTextbook;
+        this.titleTextbook = titleTextbook;
+        this.educationLevelTextbook = educationLevelTextbook;
+        this.subjectTextbook = subjectTextbook;
+        this.isbn = isbn;
+        this.yearEditionTextbook = yearEditionTextbook;
+        this.user = user;
+        this.editorTextbook = editorTextbook;
+    }
 
 //////////////////////////////
 /// CONSTRUCTEUR VIDE ///
 //////////////////////////////
+    public Textbook() {  }
 
-//////////////////////////////
+    //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
 

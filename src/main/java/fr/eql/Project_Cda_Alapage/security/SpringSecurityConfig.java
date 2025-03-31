@@ -28,7 +28,6 @@ public class SpringSecurityConfig {
     /////////////
     /// Beans ///
     /////////////
-    /// ATTENTION ICI A CHANGER LES CHEMINS D'ACCES EN FONCTION DES PAGES et API
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
@@ -37,7 +36,9 @@ public class SpringSecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-                .requestMatchers("/api/rest/security/**").permitAll();
+                .requestMatchers("/api/rest/security/**").permitAll()
+                .requestMatchers("/api/rest/administrator/**").hasAuthority("ADMINISTRATOR");
+
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return  http.build();
     }

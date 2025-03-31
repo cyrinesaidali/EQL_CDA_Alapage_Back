@@ -6,7 +6,6 @@ import fr.eql.Project_Cda_Alapage.entity.enums.StatusOrder;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -35,22 +34,24 @@ public class Order {
     @Column(name="raison_annule_commande")
     private ReasonCancellationOrder reasonCancellationOrder;
 
+
+////// Jointures avec JPA :
+    @ManyToMany
+    @JoinTable(name = "Ligne_Commande", joinColumns = {@JoinColumn(name = "id_commande")}, inverseJoinColumns = {@JoinColumn(name = "id_manuel")})
+    private List<Textbook> textbookList= new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "id_utilisateur")
     private User user;
 
-    @ManyToMany
-    @JoinTable(name = "Ligne_Commande", joinColumns = {@JoinColumn(name = "id_commande")},inverseJoinColumns = {@JoinColumn(name = "id_manuel")})
-    private List<Textbook> textbookList= new ArrayList<>();
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    private List<OrderLine> orderLineList = new ArrayList<>();
 
 
 //    private Date dateValidationOrder;
 //    private Date dateCancellingOrder;
 //    private Date dateModificationOrder;
 //    private Date dateRegistrationOrder;
-
-
-
 
 
 //////////////////////////////

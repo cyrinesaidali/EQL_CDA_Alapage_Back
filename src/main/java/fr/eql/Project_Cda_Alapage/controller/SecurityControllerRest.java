@@ -4,8 +4,10 @@ import fr.eql.Project_Cda_Alapage.entity.dto.RegistrationSiteDto;
 import fr.eql.Project_Cda_Alapage.service.SecurityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +29,13 @@ public class SecurityControllerRest {
     /////////////////
 
     @PostMapping("/register")
-    public ResponseEntity<Object> register(RegistrationSiteDto registrationSiteDto) {
-        System.out.println(registrationSiteDto);
+    public ResponseEntity<Object> register( @RequestBody RegistrationSiteDto registrationSiteDto) {
+
         return securityService.register(registrationSiteDto);
     }
 
-
-
+    @Autowired
+    public void setSecurityService(SecurityService securityService) {
+        this.securityService = securityService;
+    }
 }

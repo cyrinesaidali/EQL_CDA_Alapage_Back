@@ -1,5 +1,6 @@
 package fr.eql.Project_Cda_Alapage.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.eql.Project_Cda_Alapage.entity.enums.ReasonClosingAccount;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,6 +43,11 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
+    @JsonIgnore
+    @Column(name = "login")
+    private String login;
+
+    @JsonIgnore
     @Column(name = "mdp")
     private String password;
 
@@ -51,33 +57,34 @@ public class User implements UserDetails {
 
 ////// Jointures avec JPA :
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Order> orderList = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Textbook> textbookList = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    List<Role> rolesList;
+    @ManyToMany
+    @JoinTable(name = "Utilisateur_Role", joinColumns = {@JoinColumn(name = "id_utilisateur")}, inverseJoinColumns = {@JoinColumn(name = "id_role")})
+    private List<Role> rolesList = new ArrayList<>();
 
 //    private Date dateClosingAccountUser;
 //    private Date dateRegistrationUser;
 
-//Attention à devoir mettre les rôles ici :
 
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
-
-    public User(String surnameUser, String lastNameUser, Date birthdateUser, String address, Long phoneNumber, String email, String password, List<Role> rolesList, ReasonClosingAccount reasonClosingAccount) {
+    public User(String surnameUser, String lastNameUser, Date birthdateUser, String address, Long phoneNumber, String email, String login, String password, ReasonClosingAccount reasonClosingAccount) {
         this.surnameUser = surnameUser;
         this.lastNameUser = lastNameUser;
         this.birthdateUser = birthdateUser;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.login = login;
         this.password = password;
-        this.rolesList = rolesList;
         this.reasonClosingAccount = reasonClosingAccount;
     }
 
@@ -101,7 +108,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.login;
     }
 
     public String getPassword() {
@@ -129,9 +136,15 @@ public class User implements UserDetails {
     }
 
 
+
+
 //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
+
+    public Long getIdUser() {
+        return idUser;
+    }
 
     public String getSurnameUser() {
         return surnameUser;
@@ -145,11 +158,16 @@ public class User implements UserDetails {
         return rolesList;
     }
 
-    //////////////////////////////
+
+
+//////////////////////////////
 ///SETTER - Mutateurs ///
 //////////////////////////////
 
 
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
 
     public void setSurnameUser(String surnameUser) {
         this.surnameUser = surnameUser;
@@ -161,6 +179,10 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public void setPassword(String password) {

@@ -8,26 +8,36 @@ public class UserDto {
     private final Long idUser;
     private final String surnameUser;
     private final String lastNameUser;
-    private final String email;
-    private final String password;
+    private final String token;
 
     //////////////////////////////
     /// CONSTRUCTEUR SURCHARGÉ ///
     //////////////////////////////
 
-    public UserDto(Long idUser, String surnameUser, String lastNameUser, String email, String password) {
+    public UserDto(Long idUser, String surnameUser, String lastNameUser, String token) {
         this.idUser = idUser;
         this.surnameUser = surnameUser;
         this.lastNameUser = lastNameUser;
-        this.email = email;
-        this.password = password;
+        this.token = token;
     }
 
     /////////////////////////
     /// GETTER - Accesseurs ///
     /////////////////////////
 
+    public Long getIdUser() {
+        return idUser;
+    }
 
+    public String getSurnameUser() {
+        return surnameUser;
+    }
 
+    public String getLastNameUser() {
+        return lastNameUser;
+    }
 
+    public String getToken() {
+        return token;
+    }
 }

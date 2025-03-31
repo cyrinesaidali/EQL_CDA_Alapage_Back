@@ -10,20 +10,29 @@ import fr.eql.Project_Cda_Alapage.repository.RoleRepository;
 import fr.eql.Project_Cda_Alapage.repository.UserRepository;
 import fr.eql.Project_Cda_Alapage.security.JwtUtilities;
 import fr.eql.Project_Cda_Alapage.service.SecurityService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class SecurityServiceImpl implements SecurityService {
 /////////////////
 /// ATTRIBUTS  ///
 /////////////////
+
+    private static final Logger logger = LogManager.getLogger();
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -35,29 +44,40 @@ public class SecurityServiceImpl implements SecurityService {
     /// Méthodes publiques pour s'enregistrer et s'authentifier : ///
     /////////////////////////////////////////////////////////////////
     @Override
-    public ResponseEntity<Object> register(RegistrationSiteDto registrationSiteDto) {
-        if (userRepository.userExistsByLogin(registrationSiteDto.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Identifiants déjà utilisés");
+    public ResponseEntity<Object> register(RegistrationSiteDto registrationDto) {
+        if (userRepository.existsByLogin(registrationDto.getLogin())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Identifiant déjà utilisé");
         } else {
-            User userCreated = new User();
-            userCreated.setSurnameUser(registrationSiteDto.getSurnameUser());
-            userCreated.setLastNameUser(registrationSiteDto.getLastNameUser());
-            userCreated.setEmail(registrationSiteDto.getEmail());
-            userCreated.setPassword(passwordEncoder.encode(registrationSiteDto.getPassword()));
-            Role role = roleRepository.findByRoleName(registrationSiteDto.getRoleName());
-            userCreated.setRolesList(Collections.singletonList(role));
-            userRepository.save(userCreated);
-            String token = jwtUtilities.generateToken
-                    (registrationSiteDto.getEmail(),
-                    Collections.singletonList(role.getRoleName()));
-            System.out.println(userCreated);
-            return ResponseEntity.status(HttpStatus.OK).body(new BearerToken(token, "Bearer"));
+            User user = new User();
+            user.setLastNameUser(registrationDto.getLastNameUser());
+            user.setSurnameUser(registrationDto.getSurnameUser());
+            user.setLogin(registrationDto.getLogin());
+            System.out.println("password" + registrationDto.getPassword());
+            user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
+            Role role = roleRepository.findByRoleName(registrationDto.getRoleName());
+            user.setRolesList(Collections.singletonList(role));
+            userRepository.save(user);
+            String token = jwtUtilities.generateToken(registrationDto.getLogin(), Collections.singletonList(role.getRoleName()));
+            return ResponseEntity.status(HttpStatus.OK).body(new BearerToken(token , "Bearer "));
         }
     }
 
+
     @Override
-    public ResponseEntity<UserDto> authenticate(AuthenticationSiteDto authenticationSiteDto) {
-        return null;
+    public ResponseEntity<UserDto> authenticate(AuthenticationSiteDto authenticationDto) {
+        Authentication authentication= authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        authenticationDto.getLogin(),
+                        authenticationDto.getPassword()
+                )
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        User user = userRepository.findByLogin(authentication.getName());
+        List<String> rolesNames = new ArrayList<>();
+        user.getRolesList().forEach(role-> rolesNames.add(role.getRoleName()));
+        String token = jwtUtilities.generateToken(user.getSurnameUser(),rolesNames);
+        UserDto userDto = new UserDto(user.getIdUser(), user.getSurnameUser(), user.getLastNameUser(), token);
+        return ResponseEntity.ok(userDto);
     }
 
     //////////////////////////////

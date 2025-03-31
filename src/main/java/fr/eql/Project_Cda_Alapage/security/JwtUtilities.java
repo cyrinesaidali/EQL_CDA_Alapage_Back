@@ -1,6 +1,12 @@
 package fr.eql.Project_Cda_Alapage.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -87,11 +93,11 @@ public class JwtUtilities {
     }
 
     public String getToken (HttpServletRequest httpServletRequest) {
-         final String bearerToken = httpServletRequest.getHeader("Authorization");
-         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-             return bearerToken.substring(7);
-         } else {
-             return null;
-         }
+        final String bearerToken = httpServletRequest.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        } else {
+            return null;
+        }
     }
 }
