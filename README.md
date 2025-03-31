@@ -1,29 +1,40 @@
 ## PROJET CDA - APPLICATION ALAPAGE
-
 ## ENDPOINTS
 Starts by: /api/rest
 
 
-## Security : 1 - Authentification - ADMIN : 
-/api/rest/security/register
-- POST: Put the credentials of the admin :
+## Security : 1 - Authentification - ADMIN ET CLIENT : 
+/!\ CHANGER LES PARAMS A METTRE DANS LE JSON ET REGISTRATION SITE DTo
+
+/api/rest/security/register 
+
+- POST: Creation credentials Admin  :
 {
-"id_utilisateur" : "1",
-"adresse_utilisateur" : "a",
-"naissance_utilisateur":1997-01-25,
-"email":"aaa",
-"nom_utilisateur":"Cycy",
-"mdp":"aaaaaa",
-"telephone_utilisateur":144411,
-"raison_ferme_utilisateur":"",
-"prenom_utilisateur":"ddddd",
-"roleName":"ADMINISTRATOR"
+"lastNameUser": "Doe",
+"email": "djokdz",
+"surnameUser": "John",
+"login": "johndoe123",
+"password": "MotDePasse123!",
+"roleName": "ADMINISTRATOR"
+}
+
+- POST: Creation credentials Client :
+{
+"lastNameUser": "Doe",
+"email": "djokdz",
+"surnameUser": "John",
+"login": "johndoe123",
+"password": "MotDePasse123!",
+"roleName": "CLIENT"
 }
 
 
-## User details
 
-POST:\
+## ORDER GESTION FOR THE ADMIN :
+
+- POST: Creation credentials Client :
+
+
 {
 "name":"myName",
 "surname":"mySillySurname",

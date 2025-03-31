@@ -1,6 +1,8 @@
 package fr.eql.Project_Cda_Alapage.controller;
 
+import fr.eql.Project_Cda_Alapage.entity.dto.AuthenticationSiteDto;
 import fr.eql.Project_Cda_Alapage.entity.dto.RegistrationSiteDto;
+import fr.eql.Project_Cda_Alapage.entity.dto.UserDto;
 import fr.eql.Project_Cda_Alapage.service.SecurityService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +19,6 @@ public class SecurityControllerRest {
 
     private static final Logger logger = LogManager.getLogger();
 
-
     /////////////////
     /// ATTRIBUTS  ///
     /////////////////
@@ -28,10 +29,15 @@ public class SecurityControllerRest {
     /// Endpoints ///
     /////////////////
 
+    //RequestBody → Pour que ça se retrouve au niveau du body JSON
     @PostMapping("/register")
-    public ResponseEntity<Object> register( @RequestBody RegistrationSiteDto registrationSiteDto) {
-
+    public ResponseEntity<Object> register(@RequestBody RegistrationSiteDto registrationSiteDto) {
         return securityService.register(registrationSiteDto);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<UserDto> authenticate(@RequestBody AuthenticationSiteDto authenticationSiteDto) {
+        return securityService.authenticate(authenticationSiteDto);
     }
 
     @Autowired

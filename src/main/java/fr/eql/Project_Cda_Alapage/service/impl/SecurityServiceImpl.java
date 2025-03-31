@@ -62,8 +62,6 @@ public class SecurityServiceImpl implements SecurityService {
         }
     }
 
-
-    @Override
     public ResponseEntity<UserDto> authenticate(AuthenticationSiteDto authenticationDto) {
         Authentication authentication= authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -75,7 +73,7 @@ public class SecurityServiceImpl implements SecurityService {
         User user = userRepository.findByLogin(authentication.getName());
         List<String> rolesNames = new ArrayList<>();
         user.getRolesList().forEach(role-> rolesNames.add(role.getRoleName()));
-        String token = jwtUtilities.generateToken(user.getSurnameUser(),rolesNames);
+        String token = jwtUtilities.generateToken(user.getUsername(),rolesNames);
         UserDto userDto = new UserDto(user.getIdUser(), user.getSurnameUser(), user.getLastNameUser(), token);
         return ResponseEntity.ok(userDto);
     }
