@@ -51,8 +51,11 @@ public class SecurityServiceImpl implements SecurityService {
             User user = new User();
             user.setLastNameUser(registrationDto.getLastNameUser());
             user.setSurnameUser(registrationDto.getSurnameUser());
+            user.setEmail(registrationDto.getEmail());
+            user.setPhoneNumber(registrationDto.getPhoneNumber());
+            user.setBirthdateUser(registrationDto.getBirthdateUser());
+            user.setAddress(registrationDto.getAddress());
             user.setLogin(registrationDto.getLogin());
-            System.out.println("password" + registrationDto.getPassword());
             user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
             Role role = roleRepository.findByRoleName(registrationDto.getRoleName());
             user.setRolesList(Collections.singletonList(role));

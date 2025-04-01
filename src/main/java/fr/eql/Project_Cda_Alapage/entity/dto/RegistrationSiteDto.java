@@ -1,6 +1,9 @@
 package fr.eql.Project_Cda_Alapage.entity.dto;
 
 import fr.eql.Project_Cda_Alapage.entity.enums.RoleName;
+import jakarta.persistence.Column;
+
+import java.util.Date;
 
 public class RegistrationSiteDto {
 
@@ -10,10 +13,14 @@ public class RegistrationSiteDto {
 
     private String surnameUser;
     private String lastNameUser;
-    private String email;
     private String login;
     private String password;
     private RoleName roleName;
+    private String email;
+    private Long phoneNumber;
+    private Date birthdateUser;
+    private String address;
+
 
 //////////////////////////////
 /// GETTER - Accesseurs///
@@ -25,10 +32,6 @@ public class RegistrationSiteDto {
 
     public String getLastNameUser() {
         return lastNameUser;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getLogin() {
@@ -43,33 +46,25 @@ public class RegistrationSiteDto {
         return roleName;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
 
-//////////////////////////////
+    public Date getBirthdateUser() {
+        return birthdateUser;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    //////////////////////////////
 ///SETTER - Mutateurs ///
 //////////////////////////////
 
-    public void setSurnameUser(String surnameUser) {
-        this.surnameUser = surnameUser;
-    }
 
-    public void setLastNameUser(String lastNameUser) {
-        this.lastNameUser = lastNameUser;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRoleName(RoleName roleName) {
-        this.roleName = roleName;
-    }
 }

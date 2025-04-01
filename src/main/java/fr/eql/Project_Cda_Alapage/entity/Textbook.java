@@ -37,9 +37,6 @@ public class Textbook {
     @Enumerated(EnumType.STRING)
     private SubjectTextbook subjectTextbook;
 
-//    @Column(name="editeur_manuel")
-//    private EditorTextbook editorTextbook; //JavaClass
-
     @Column(name="isbn")
     private String isbn;
 
@@ -66,7 +63,7 @@ public class Textbook {
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
-    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, String isbn, Date yearEditionTextbook, User user, EditorTextbook editorTextbook) {
+    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook) {
         this.idTextbook = idTextbook;
         this.priceTextbook = priceTextbook;
         this.referenceTextbook = referenceTextbook;
@@ -75,7 +72,6 @@ public class Textbook {
         this.subjectTextbook = subjectTextbook;
         this.isbn = isbn;
         this.yearEditionTextbook = yearEditionTextbook;
-        this.user = user;
         this.editorTextbook = editorTextbook;
     }
 
@@ -87,11 +83,16 @@ public class Textbook {
     //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
-    public String getReferenceTextbook() {
-        return referenceTextbook;
+
+    public Long getIdTextbook() {
+        return idTextbook;
     }
 
-//////////////////////////////
+    public String getIsbn() {
+        return isbn;
+    }
+
+    //////////////////////////////
 ///SETTER -  ///
 //////////////////////////////
 }

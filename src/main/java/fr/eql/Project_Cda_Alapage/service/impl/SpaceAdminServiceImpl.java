@@ -14,22 +14,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class SpaceAdminServiceImpl implements SpaceAdminService {
     private static final Logger logger = LogManager.getLogger();
     private TextbookRepository textbookRepository;
 
+////existByref → Méthode spé mise en place avec JPA
     @Override
     public Textbook addTextbook(TextbookDto textbookDto) {
-
-    /*
-    existByref → Méthode spé mise en place avec JPA
-
-     */
-
-        if (textbookRepository.existByReference(textbookDto.getReferenceTextbook()) != null) {
-            logger.error("Manuel scolaire avec la référence : {} existe déjà.", textbookDto.getIdTextbook());
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Manuel scolaire avec la référence " + textbookDto.getReferenceTextbook() + " existe déjà.");
+        if (textbookRepository.existByIsbn(textbookDto.getIsbn()) != null) {
+            logger.error("Manuel scolaire avec l'ISBN : {} existe déjà.", textbookDto.getIsbn());
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Manuel scolaire avec l'ISBN " + textbookDto.getIsbn() + " existe déjà.");
         }
         User admin = new User();
         admin.setIdUser(textbookDto.getUserId());
@@ -42,10 +39,22 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
                 textbookDto.getSubjectTextbook(),
                 textbookDto.getIsbn(),
                 textbookDto.getYearEditionTextbook(),
-                admin,
                 textbookDto.getEditorTextbook()
                 );
         return textbookRepository.save(textbookAdded);
+    }
+
+    @Override
+    public List<String> displayAllTextbook() {
+        return textbookRepository.findAllTextbook();
+    }
+
+    @Override
+    public void deleteTextBook(TextbookDto textbookDto) {
+        System.out.println("TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST");
+        Textbook textbookToDelete = textbookRepository.findByIsbn(textbookDto.getIsbn());
+        textbookRepository.delete(textbookToDelete);
+        logger.info("test");
     }
 
     ///////////////

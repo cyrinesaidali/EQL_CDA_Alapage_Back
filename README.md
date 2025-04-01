@@ -9,8 +9,11 @@ Starts by: /api/rest
 - POST: Création identifiants : localhost:8080/api/rest/security/register
 {
 "lastNameUser": "Mohamed",
-"email": "mohamedAhmed@alapage.com",
 "surnameUser": "Ahmed",
+"email": "mohamedAhmed@alapage.com",
+"phoneNumber": 255444,
+"birthdateUser":"2025",
+"address":"Streeeeeet",
 "login": "moh",
 "password": "moh",
 "roleName": "ADMINISTRATOR"
@@ -21,6 +24,9 @@ Starts by: /api/rest
 "lastNameUser": "Pilou",
 "email": "pilou@pilou.com",
 "surnameUser": "Pilou",
+"phoneNumber": 888888888888,
+"birthdateUser":"1997",
+"address":"Streeeeeet",
 "login": "pi",
 "password": "pi",
 "roleName": "CLIENT"
@@ -48,3 +54,6 @@ Starts by: /api/rest
 "userId": 1,
 "editorTextbook": null
 }
+
+- Affichage des manuels scolaires
+- GET : localhost:8080/api/rest/client/displayTextbook

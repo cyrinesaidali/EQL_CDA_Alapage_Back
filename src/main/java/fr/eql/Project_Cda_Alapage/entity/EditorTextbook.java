@@ -37,6 +37,7 @@ public class EditorTextbook {
     private Boolean accreditationNationalEducationEditor;
 
 
+    ////// Jointures avec JPA :
     @OneToMany(mappedBy = "editorTextbook", fetch = FetchType.LAZY)
     private List<Textbook> textbookList = new ArrayList<>();
 

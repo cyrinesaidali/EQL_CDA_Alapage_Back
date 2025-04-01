@@ -177,10 +177,6 @@ public class User implements UserDetails {
         this.lastNameUser = lastNameUser;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public void setLogin(String login) {
         this.login = login;
     }
@@ -191,5 +187,21 @@ public class User implements UserDetails {
 
     public void setRolesList(List<Role> rolesList) {
         this.rolesList = rolesList;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setBirthdateUser(Date birthdateUser) {
+        this.birthdateUser = birthdateUser;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
