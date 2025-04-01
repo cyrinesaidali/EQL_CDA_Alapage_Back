@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,11 +30,10 @@ public class SpaceAdminController {
     /////////////////
 
     @PostMapping("/addTextbook")
-    public ResponseEntity<Textbook> addTextbook(TextbookDto textbookDto) {
+    public ResponseEntity<Textbook> addTextbook(@RequestBody TextbookDto textbookDto) {
         Textbook textbookAdded = spaceAdminService.addTextbook(textbookDto);
-        System.out.println((textbookAdded));
-        logger.info(textbookAdded);
-        return ResponseEntity.ok(textbookAdded);}
+        return ResponseEntity.ok(textbookAdded);
+    }
 
     ///////////////
     /// SETTERS ///

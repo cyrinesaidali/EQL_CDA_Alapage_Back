@@ -58,16 +58,16 @@ public class User implements UserDetails {
 ////// Jointures avec JPA :
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     private List<Order> orderList = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user")
     private List<Textbook> textbookList = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER  , cascade = CascadeType.MERGE)
     @JoinTable(name = "Utilisateur_Role", joinColumns = {@JoinColumn(name = "id_utilisateur")}, inverseJoinColumns = {@JoinColumn(name = "id_role")})
-    private List<Role> rolesList = new ArrayList<>();
+    List<Role> rolesList;
 
 //    private Date dateClosingAccountUser;
 //    private Date dateRegistrationUser;

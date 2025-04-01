@@ -20,8 +20,8 @@ public class CustomerUserDetailsService implements UserDetailsService {
     /// Méthodes ///
     ////////////////
     @Override
-    public UserDetails loadUserByUsername(String surnameUser) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        return userRepository.findByLogin(login);
     }
 
     /////////////////

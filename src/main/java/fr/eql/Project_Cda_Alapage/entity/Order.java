@@ -36,15 +36,12 @@ public class Order {
 
 
 ////// Jointures avec JPA :
-    @ManyToMany
-    @JoinTable(name = "Ligne_Commande", joinColumns = {@JoinColumn(name = "id_commande")}, inverseJoinColumns = {@JoinColumn(name = "id_manuel")})
-    private List<Textbook> textbookList= new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_utilisateur")
     private User user;
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLineList = new ArrayList<>();
 
 

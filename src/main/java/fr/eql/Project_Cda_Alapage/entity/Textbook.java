@@ -48,9 +48,6 @@ public class Textbook {
 
 
 ////// Jointures avec JPA :
-    @ManyToMany(mappedBy = "textbookList", cascade = CascadeType.ALL)
-    private List<Order> orderList = new ArrayList<>();
-
     @ManyToOne
     @JoinColumn(name = "id_utilisateur")
     private User user;
@@ -59,8 +56,8 @@ public class Textbook {
     @JoinColumn(name = "id_editeur")
     private EditorTextbook editorTextbook;
 
-    @OneToMany(mappedBy = "textbook", fetch = FetchType.LAZY)
-    private List<OrderLine> orderLineList = new ArrayList<>();
+    @OneToMany(mappedBy = "textbook")
+    private List<OrderLine> orderLineListTwo = new ArrayList<>();
 
 //    private Date dateRegistrationTextbook;
 
@@ -90,6 +87,9 @@ public class Textbook {
     //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
+    public String getReferenceTextbook() {
+        return referenceTextbook;
+    }
 
 //////////////////////////////
 ///SETTER -  ///
