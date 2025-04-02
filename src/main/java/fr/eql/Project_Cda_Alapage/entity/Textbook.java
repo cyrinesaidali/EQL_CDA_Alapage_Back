@@ -1,6 +1,7 @@
 package fr.eql.Project_Cda_Alapage.entity;
 
 import fr.eql.Project_Cda_Alapage.entity.enums.EducationLevelTextbook;
+import fr.eql.Project_Cda_Alapage.entity.enums.StatusTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.SubjectTextbook;
 
 import jakarta.persistence.*;
@@ -37,6 +38,10 @@ public class Textbook {
     @Enumerated(EnumType.STRING)
     private SubjectTextbook subjectTextbook;
 
+    @Column(name="statut_dispo_manuel")
+    @Enumerated(EnumType.STRING)
+    private StatusTextbook statusTextbook;
+
     @Column(name="isbn")
     private String isbn;
 
@@ -58,18 +63,18 @@ public class Textbook {
 
 //    private Date dateRegistrationTextbook;
 
-
-
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
-    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook) {
+
+    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook) {
         this.idTextbook = idTextbook;
         this.priceTextbook = priceTextbook;
         this.referenceTextbook = referenceTextbook;
         this.titleTextbook = titleTextbook;
         this.educationLevelTextbook = educationLevelTextbook;
         this.subjectTextbook = subjectTextbook;
+        this.statusTextbook = statusTextbook;
         this.isbn = isbn;
         this.yearEditionTextbook = yearEditionTextbook;
         this.editorTextbook = editorTextbook;
@@ -92,7 +97,9 @@ public class Textbook {
         return isbn;
     }
 
-    //////////////////////////////
+//////////////////////////////
 ///SETTER -  ///
 //////////////////////////////
+
+
 }

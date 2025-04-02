@@ -20,12 +20,13 @@ import java.util.List;
 @RequestMapping("/api/rest/administrator")
 public class SpaceAdminController {
 
-    private static final Logger logger = LogManager.getLogger();
-
     /////////////////
     /// ATTRIBUTS  ///
     /////////////////
     private SpaceAdminService spaceAdminService;
+
+    private static final Logger logger = LogManager.getLogger();
+
 
     /////////////////
     /// Endpoints ///
@@ -39,7 +40,7 @@ public class SpaceAdminController {
     }
 
     //Affichage de manuels
-    @GetMapping("/displayTextbook")
+    @GetMapping("/displayAllTextbooks")
     public ResponseEntity<List<String>> displayAllTextbook() {
         List<String> textbookList = spaceAdminService.displayAllTextbook();
         return ResponseEntity.ok(textbookList);
@@ -48,9 +49,7 @@ public class SpaceAdminController {
     //Suppression manuels
     @DeleteMapping("/deleteTextbook")
     public void deleteTextBook(@RequestBody TextbookDto textbookDto) {
-        System.out.println("************* Le livre a bien été enlevé ****** ");
         spaceAdminService.deleteTextBook(textbookDto);
-        System.out.println(" 77777777777777777777777777 ");
     }
 
     ///////////////

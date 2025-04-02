@@ -2,12 +2,16 @@ package fr.eql.Project_Cda_Alapage.entity.dto;
 
 import fr.eql.Project_Cda_Alapage.entity.EditorTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.EducationLevelTextbook;
+import fr.eql.Project_Cda_Alapage.entity.enums.StatusTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.SubjectTextbook;
 
 import java.util.Date;
 
 
 public class TextbookDto {
+    //////////////////////////////
+    /// ATTRIBUTS///
+    ///////////////
 
     private Long idTextbook;
 
@@ -21,6 +25,8 @@ public class TextbookDto {
 
     private SubjectTextbook subjectTextbook;
 
+    private StatusTextbook statusTextbook;
+
     private String isbn;
 
     private Date yearEditionTextbook;
@@ -33,13 +39,14 @@ public class TextbookDto {
     /// CONSTRUCTEUR SURCHARGÉ ///
     //////////////////////////////
 
-    public TextbookDto(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook, long userId) {
+    public TextbookDto(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook, long userId) {
         this.idTextbook = idTextbook;
         this.priceTextbook = priceTextbook;
         this.referenceTextbook = referenceTextbook;
         this.titleTextbook = titleTextbook;
         this.educationLevelTextbook = educationLevelTextbook;
         this.subjectTextbook = subjectTextbook;
+        this.statusTextbook = statusTextbook;
         this.isbn = isbn;
         this.yearEditionTextbook = yearEditionTextbook;
         this.editorTextbook = editorTextbook;
@@ -72,6 +79,10 @@ public class TextbookDto {
 
     public SubjectTextbook getSubjectTextbook() {
         return subjectTextbook;
+    }
+
+    public StatusTextbook getStatusTextbook() {
+        return statusTextbook;
     }
 
     public String getIsbn() {

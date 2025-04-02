@@ -22,6 +22,7 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
     private TextbookRepository textbookRepository;
 
 ////existByref → Méthode spé mise en place avec JPA
+/// Méthode pour ajouter un manuel scolaire au sein de la BDD
     @Override
     public Textbook addTextbook(TextbookDto textbookDto) {
         if (textbookRepository.existByIsbn(textbookDto.getIsbn()) != null) {
@@ -37,6 +38,7 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
                 textbookDto.getTitleTextbook(),
                 textbookDto.getEducationLevelTextbook(),
                 textbookDto.getSubjectTextbook(),
+                textbookDto.getStatusTextbook(),
                 textbookDto.getIsbn(),
                 textbookDto.getYearEditionTextbook(),
                 textbookDto.getEditorTextbook()
@@ -44,23 +46,22 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
         return textbookRepository.save(textbookAdded);
     }
 
+    /// Méthode pour ajouter un manuel scolaire au sein de la BDD
     @Override
     public List<String> displayAllTextbook() {
         return textbookRepository.findAllTextbook();
     }
 
+    /// Méthode pour supprimer un textbook en fonction de l'ISBN (findByIsbn → cf Requête)
     @Override
     public void deleteTextBook(TextbookDto textbookDto) {
-        System.out.println("TESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSST");
         Textbook textbookToDelete = textbookRepository.findByIsbn(textbookDto.getIsbn());
         textbookRepository.delete(textbookToDelete);
-        logger.info("test");
     }
 
-    ///////////////
-    /// SETTERS ///
-    ///////////////
-
+    ///////////////////////////
+    /// SETTERS - AUTOWIRED ///
+    //////////////////////////
     @Autowired
     public void setTextbookRepository(TextbookRepository textbookRepository) {
         this.textbookRepository = textbookRepository;

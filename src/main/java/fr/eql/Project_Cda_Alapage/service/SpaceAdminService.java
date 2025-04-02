@@ -13,9 +13,7 @@ public interface SpaceAdminService {
 
     void deleteTextBook(TextbookDto textbookDto);
 
-
-//    void modifyTextbook();
-//void deleteTextbook();
+//void modifyTextbook();
 
 
 

@@ -21,8 +21,10 @@ public class Order {
 
     @Column(name="prix_commande")
     private Float priceOrder;
+
     @Column(name="numero_commande")
     private Long numberOrder;
+
     @Column(name="code_retrait_commande")
     private String pickUpCodeOrder;
 
@@ -34,9 +36,7 @@ public class Order {
     @Column(name="raison_annule_commande")
     private ReasonCancellationOrder reasonCancellationOrder;
 
-
 ////// Jointures avec JPA :
-
     @ManyToOne
     @JoinColumn(name = "id_utilisateur")
     private User user;

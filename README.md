@@ -39,8 +39,8 @@ Starts by: /api/rest
 }
 
 ################################################
+## ADMINISTRATEUR : 
 
-## ADMINISTRATEUR /
 - Ajout de manuels scolaires
 - POST : localhost:8080/api/rest/administrator/addTextbook
 {
@@ -57,3 +57,19 @@ Starts by: /api/rest
 
 - Affichage des manuels scolaires
 - GET : localhost:8080/api/rest/client/displayTextbook
+
+- Suppression de manuels scolaires: 
+- DEL : localhost:8080/api/rest/administrator/deleteTextbook
+{
+"isbn": "333333333333"
+}
+
+
+################################################
+## CLIENT : 
+
+- Affichage des manuels scolaires seulement disponibles
+- GET : localhost:8080/api/rest/catalog/displayTextbooks
+
+
+

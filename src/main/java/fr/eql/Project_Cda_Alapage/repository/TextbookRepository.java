@@ -16,10 +16,16 @@ L'utilisation de paramètres nommés (comme :referenceTextbook) est une bonne pr
     @Query(value = "SELECT * FROM Manuel_Scolaire WHERE isbn LIKE :isbn", nativeQuery = true)
     Textbook existByIsbn(String isbn);
 
-    @Query(value = "SELECT titre_manuel, ref_manuel, isbn, classe_sco_manuel, sujet_manuel, prix_manuel FROM Manuel_Scolaire", nativeQuery = true)
+    @Query(value = "SELECT titre_manuel, ref_manuel, isbn, classe_sco_manuel, sujet_manuel, prix_manuel, statut_dispo_manuel FROM Manuel_Scolaire", nativeQuery = true)
     List<String> findAllTextbook();
 
     @Query(value = "SELECT * FROM Manuel_Scolaire WHERE isbn =:isbn", nativeQuery = true)
     Textbook findByIsbn(@Param("isbn") String isbn);
+
+    @Query(value = "SELECT titre_manuel, ref_manuel, isbn, classe_sco_manuel, sujet_manuel, prix_manuel, statut_dispo_manuel " +
+            "FROM Manuel_Scolaire " +
+            "WHERE statut_dispo_manuel " +
+            "LIKE CONCAT('DISPONIBLE') ", nativeQuery = true)
+    List<String> findByAvailibility(List<String> allTextbootList);
 
 }

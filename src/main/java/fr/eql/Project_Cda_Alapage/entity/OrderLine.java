@@ -28,4 +28,27 @@ public class OrderLine {
     @JoinColumn(name = "id_commande")
     private Order order;
 
+//////////////////////////////
+/// CONSTRUCTEUR SURCHARGÉ ///
+//////////////////////////////
+
+    public OrderLine(Long idOrderLine, Long quantityTextbook, Textbook textbook, Order order) {
+        this.idOrderLine = idOrderLine;
+        this.quantityTextbook = quantityTextbook;
+        this.textbook = textbook;
+        this.order = order;
+    }
+
+//////////////////////////////
+/// CONSTRUCTEUR VIDE ///
+//////////////////////////////
+    public OrderLine() {
+    }
+
+
+//////////////////////////////
+///SETTER -  ///
+//////////////////////////////
+
+
 }
