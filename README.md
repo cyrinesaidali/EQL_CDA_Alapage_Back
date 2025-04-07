@@ -2,44 +2,30 @@
 ## ENDPOINTS
 Starts by: /api/rest
 
-
-## Security : 1 - S'enregistrer - ADMIN ET CLIENT : 
+## ADMINISTRATEUR : 
+### Security : 1 - S'enregistrer - ADMIN :
 /!\ CHANGER LES PARAMS A METTRE DANS LE JSON ET REGISTRATION SITE DTo
 
 - POST: Création identifiants : localhost:8080/api/rest/security/register
-{
-"lastNameUser": "Mohamed",
-"surnameUser": "Ahmed",
-"email": "mohamedAhmed@alapage.com",
-"phoneNumber": 255444,
-"birthdateUser":"2025",
-"address":"Streeeeeet",
-"login": "moh",
-"password": "moh",
-"roleName": "ADMINISTRATOR"
-}
+  {
+  "lastNameUser": "Mohamed",
+  "surnameUser": "Ahmed",
+  "email": "mohamedAhmed@alapage.com",
+  "phoneNumber": 255444,
+  "birthdateUser":"2025",
+  "address":"Streeeeeet",
+  "login": "moh",
+  "password": "moh",
+  "roleName": "ADMINISTRATOR"
+  }
 
-- POST :
-{
-"lastNameUser": "Pilou",
-"email": "pilou@pilou.com",
-"surnameUser": "Pilou",
-"phoneNumber": 888888888888,
-"birthdateUser":"1997",
-"address":"Streeeeeet",
-"login": "pi",
-"password": "pi",
-"roleName": "CLIENT"
-}
-
+### Security : S'authentifier :
 - POST : localhost:8080/api/rest/security/authenticate
-{
-"login": "moh",
-"password": "moh"
-}
-
-################################################
-## ADMINISTRATEUR : 
+  {
+  "login": "moh",
+  "password": "moh"
+  *tokenAdmin à renseigner*
+  }
 
 - Ajout de manuels scolaires
 - POST : localhost:8080/api/rest/administrator/addTextbook
@@ -53,13 +39,19 @@ Starts by: /api/rest
 "yearEditionTextbook": "20151",
 "userId": 1,
 "editorTextbook": null
+-   *token à renseigner*
+
 }
 
 - Affichage des manuels scolaires
 - GET : localhost:8080/api/rest/client/displayTextbook
+- *token à renseigner*
+
 
 - Suppression de manuels scolaires: 
 - DEL : localhost:8080/api/rest/administrator/deleteTextbook
+*token à renseigner*
+
 {
 "isbn": "333333333333"
 }
@@ -67,6 +59,28 @@ Starts by: /api/rest
 
 ################################################
 ## CLIENT : 
+
+## Security : 1 Bis - S'enregistrer - Client  :
+- POST :
+  {
+  "lastNameUser": "Pilou",
+  "email": "pilou@pilou.com",
+  "surnameUser": "Pilou",
+  "phoneNumber": 888888888888,
+  "birthdateUser":"1997",
+  "address":"Streeeeeet",
+  "login": "pi",
+  "password": "pi",
+  "roleName": "CLIENT"
+  }
+
+### Security : S'authentifier :
+- POST : localhost:8080/api/rest/security/authenticate
+  {
+  "login": "pi",
+  "password": "pi"
+  *tokenClient à renseigner*
+  }
 
 - Affichage des manuels scolaires seulement disponibles
 - GET : localhost:8080/api/rest/catalog/displayTextbooks
