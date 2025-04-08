@@ -9,7 +9,7 @@ public interface SpaceAdminService {
 
     Textbook addTextbook(TextbookDto textbookDto);
 
-    List<String> displayAllTextbook();
+    List<Textbook> displayAllTextbook();
 
     void deleteTextBook(TextbookDto textbookDto);
 

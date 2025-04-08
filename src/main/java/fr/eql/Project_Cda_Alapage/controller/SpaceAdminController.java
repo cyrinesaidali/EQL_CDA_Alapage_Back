@@ -43,8 +43,8 @@ public class SpaceAdminController {
 
     //Affichage de manuels
     @GetMapping("/displayAllTextbooks")
-    public ResponseEntity<List<String>> displayAllTextbook() {
-        List<String> textbookList = spaceAdminService.displayAllTextbook();
+    public ResponseEntity<List<Textbook>> displayAllTextbook() {
+        List<Textbook> textbookList = spaceAdminService.displayAllTextbook();
         return ResponseEntity.ok(textbookList);
     }
 

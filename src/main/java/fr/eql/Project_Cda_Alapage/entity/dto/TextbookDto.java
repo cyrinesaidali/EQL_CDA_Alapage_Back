@@ -35,11 +35,15 @@ public class TextbookDto {
 
     private long userId;
 
+    private String picture;
+
+
+
     //////////////////////////////
     /// CONSTRUCTEUR SURCHARGÉ ///
     //////////////////////////////
 
-    public TextbookDto(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook, long userId) {
+    public TextbookDto(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook, long userId, String picture) {
         this.idTextbook = idTextbook;
         this.priceTextbook = priceTextbook;
         this.referenceTextbook = referenceTextbook;
@@ -51,6 +55,10 @@ public class TextbookDto {
         this.yearEditionTextbook = yearEditionTextbook;
         this.editorTextbook = editorTextbook;
         this.userId = userId;
+        this.picture = picture;
+    }
+
+    public TextbookDto() {
     }
 
     /////////////////////////
@@ -97,9 +105,15 @@ public class TextbookDto {
         return editorTextbook;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
     public long getUserId() {
         return userId;
     }
+
+
 
 
 

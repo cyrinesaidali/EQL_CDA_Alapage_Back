@@ -22,7 +22,7 @@ public class EditorTextbook {
     private String nameEditorTextbook;
 
     @Column(name="groupe_editeur")
-    public String groupEditor;
+    private String groupEditor;
 
     @Column(name="adresse_Editeur")
     private String addressEditorTextbook;
@@ -33,26 +33,41 @@ public class EditorTextbook {
     @Column(name="siret_editeur")
     private String siretEditorTextbook;
 
-    @Column(name="accreditation_oui")
-    private Boolean accreditationNationalEducationEditor;
-
-
     ////// Jointures avec JPA :
-    @OneToMany(mappedBy = "editorTextbook", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "editorTextbook")
     private List<Textbook> textbookList = new ArrayList<>();
 
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
 
+    public EditorTextbook(Long idEditorTextbook, String nameEditorTextbook, String groupEditor, String addressEditorTextbook, Long phoneNumberEditorTextbook, String siretEditorTextbook) {
+        this.idEditorTextbook = idEditorTextbook;
+        this.nameEditorTextbook = nameEditorTextbook;
+        this.groupEditor = groupEditor;
+        this.addressEditorTextbook = addressEditorTextbook;
+        this.phoneNumberEditorTextbook = phoneNumberEditorTextbook;
+        this.siretEditorTextbook = siretEditorTextbook;
+    }
 
-//////////////////////////////
+    //////////////////////////////
 /// CONSTRUCTEUR VIDE ///
 //////////////////////////////
 
-//////////////////////////////
+    public EditorTextbook() {
+    }
+
+    //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
+
+public Long getIdEditorTextbook() {
+        return idEditorTextbook;
+    }
+
+    public String getNameEditorTextbook() {
+        return nameEditorTextbook;
+    }
 
 //////////////////////////////
 ///SETTER -  ///

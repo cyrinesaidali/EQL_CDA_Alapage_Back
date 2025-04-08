@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface OrderClientService {
 
-    List<String> consultAllOrders();
+    List<Order> consultAllOrders();
 
     void updateOrder(Order order);
 

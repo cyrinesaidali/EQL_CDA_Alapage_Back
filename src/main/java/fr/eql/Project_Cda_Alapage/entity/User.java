@@ -61,9 +61,6 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<Order> orderList = new ArrayList<>();
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Textbook> textbookList = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.EAGER  , cascade = CascadeType.MERGE)
     @JoinTable(name = "Utilisateur_Role", joinColumns = {@JoinColumn(name = "id_utilisateur")}, inverseJoinColumns = {@JoinColumn(name = "id_role")})

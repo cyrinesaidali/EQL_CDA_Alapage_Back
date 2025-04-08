@@ -31,8 +31,8 @@ public class DisplayTextbookClientControllerRest {
     /////////////////
 
     @GetMapping("/displayTextbooks")
-    public ResponseEntity<List<String>> displayAvailableTextbooks() {
-        List<String> textbookList = displayTextbookClientService.displayAvailableTextbooks();
+    public ResponseEntity<List<Textbook>> displayAvailableTextbooks() {
+        List<Textbook> textbookList = displayTextbookClientService.displayAvailableTextbooks();
         return ResponseEntity.ok(textbookList);
     }
 

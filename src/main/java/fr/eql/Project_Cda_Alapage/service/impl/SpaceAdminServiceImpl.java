@@ -41,15 +41,15 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
                 textbookDto.getStatusTextbook(),
                 textbookDto.getIsbn(),
                 textbookDto.getYearEditionTextbook(),
-                textbookDto.getEditorTextbook()
+                textbookDto.getPicture()
                 );
         return textbookRepository.save(textbookAdded);
     }
 
     /// Méthode pour ajouter un manuel scolaire au sein de la BDD
     @Override
-    public List<String> displayAllTextbook() {
-        return textbookRepository.findAllTextbook();
+    public List<Textbook> displayAllTextbook() {
+        return textbookRepository.findAll();
     }
 
     /// Méthode pour supprimer un textbook en fonction de l'ISBN (findByIsbn → cf Requête)
