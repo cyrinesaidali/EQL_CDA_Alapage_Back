@@ -56,8 +56,6 @@ public class User implements UserDetails {
     private ReasonClosingAccount reasonClosingAccount;
 
 ////// Jointures avec JPA :
-
-    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Order> orderList = new ArrayList<>();
 
@@ -73,7 +71,8 @@ public class User implements UserDetails {
 //////////////////////////////
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
-    public User(String surnameUser, String lastNameUser, Date birthdateUser, String address, Long phoneNumber, String email, String login, String password, ReasonClosingAccount reasonClosingAccount) {
+
+public User(String surnameUser, String lastNameUser, Date birthdateUser, String address, Long phoneNumber, String email, String login, String password, ReasonClosingAccount reasonClosingAccount) {
         this.surnameUser = surnameUser;
         this.lastNameUser = lastNameUser;
         this.birthdateUser = birthdateUser;

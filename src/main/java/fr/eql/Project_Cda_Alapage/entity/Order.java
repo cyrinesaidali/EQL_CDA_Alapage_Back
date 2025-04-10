@@ -37,7 +37,9 @@ public class Order {
     private ReasonCancellationOrder reasonCancellationOrder;
 
 ////// Jointures avec JPA :
-    @ManyToOne
+    //Ici pour le lien avec User, pas besoin de PERSIST, ni MERGE (sinon erreur de persistance
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_utilisateur")
     private User user;
 
@@ -55,17 +57,77 @@ public class Order {
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
 
+    public Order(Long idOrder, Float priceOrder, Long numberOrder, String pickUpCodeOrder, StatusOrder statusOrder, ReasonCancellationOrder reasonCancellationOrder, User user) {
+        this.idOrder = idOrder;
+        this.priceOrder = priceOrder;
+        this.numberOrder = numberOrder;
+        this.pickUpCodeOrder = pickUpCodeOrder;
+        this.statusOrder = statusOrder;
+        this.reasonCancellationOrder = reasonCancellationOrder;
+        this.user = user;
+    }
 
-//////////////////////////////
+    //////////////////////////////
 /// CONSTRUCTEUR VIDE ///
 //////////////////////////////
 
-//////////////////////////////
+    public Order() {
+    }
+
+    //////////////////////////////
 /// GETTER - Accesseurs///
 //////////////////////////////
 
-//////////////////////////////
+    public Long getIdOrder() {
+        return idOrder;
+    }
+
+    public Float getPriceOrder() {
+        return priceOrder;
+    }
+
+    public Long getNumberOrder() {
+        return numberOrder;
+    }
+
+    public String getPickUpCodeOrder() {
+        return pickUpCodeOrder;
+    }
+
+    public StatusOrder getStatusOrder() {
+        return statusOrder;
+    }
+
+    public ReasonCancellationOrder getReasonCancellationOrder() {
+        return reasonCancellationOrder;
+    }
+
+    //////////////////////////////
 ///SETTER -  ///
 //////////////////////////////
+
+    public void setIdOrder(Long idOrder) {
+        this.idOrder = idOrder;
+    }
+
+    public void setPriceOrder(Float priceOrder) {
+        this.priceOrder = priceOrder;
+    }
+
+    public void setNumberOrder(Long numberOrder) {
+        this.numberOrder = numberOrder;
+    }
+
+    public void setPickUpCodeOrder(String pickUpCodeOrder) {
+        this.pickUpCodeOrder = pickUpCodeOrder;
+    }
+
+    public void setStatusOrder(StatusOrder statusOrder) {
+        this.statusOrder = statusOrder;
+    }
+
+    public void setReasonCancellationOrder(ReasonCancellationOrder reasonCancellationOrder) {
+        this.reasonCancellationOrder = reasonCancellationOrder;
+    }
 
 }

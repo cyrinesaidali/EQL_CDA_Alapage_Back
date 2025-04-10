@@ -22,11 +22,15 @@ public class OrderDto {
 
     private ReasonCancellationOrder reasonCancellationOrder;
 
+    private long userId;
+
+
     //////////////////////////////
     /// CONSTRUCTEUR SURCHARGÉ ///
     //////////////////////////////
 
-    public OrderDto(Float priceOrder, Long numberOrder, String pickUpCodeOrder, StatusOrder statusOrder, ReasonCancellationOrder reasonCancellationOrder) {
+    public OrderDto(Long idOrder, Float priceOrder, Long numberOrder, String pickUpCodeOrder, StatusOrder statusOrder, ReasonCancellationOrder reasonCancellationOrder) {
+        this.idOrder = idOrder;
         this.priceOrder = priceOrder;
         this.numberOrder = numberOrder;
         this.pickUpCodeOrder = pickUpCodeOrder;
@@ -34,9 +38,17 @@ public class OrderDto {
         this.reasonCancellationOrder = reasonCancellationOrder;
     }
 
+    public OrderDto() {
+    }
+
     /////////////////////////
     /// GETTER - Accesseurs /
     /////////////////////////
+
+
+    public Long getIdOrder() {
+        return idOrder;
+    }
 
     public Float getPriceOrder() {
         return priceOrder;
@@ -58,9 +70,15 @@ public class OrderDto {
         return reasonCancellationOrder;
     }
 
-/////////////////////////
+    public long getUserId() {
+        return userId;
+    }
+
+    /////////////////////////
     /// SETTER  /
     /////////////////////////
 
-
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 }

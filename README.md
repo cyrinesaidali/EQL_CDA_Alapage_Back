@@ -82,8 +82,20 @@ Starts by: /api/rest
   *tokenClient à renseigner*
   }
 
+
+
+### Catalog → Accéder au catalogue des manuels dispos et commencer à enregistrer une commande :
+
 - Affichage des manuels scolaires seulement disponibles
 - GET : localhost:8080/api/rest/catalog/displayTextbooks
 
+- POST : localhost:8080/api/rest/catalog/addOrder
+{
+  "priceOrder": 5555,
+  "numberOrder": "111111",
+  "pickUpCodeOrder": "22222222",
+  "statusOrder": "EN_COURS",
+  "reasonCancellationOrder": "REASON_CANCELLATION_ORDER_1"
+}
 
-
+- POST : localhost:8080/api/rest/catalog/

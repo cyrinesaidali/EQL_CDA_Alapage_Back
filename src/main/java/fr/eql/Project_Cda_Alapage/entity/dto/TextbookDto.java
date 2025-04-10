@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 public class TextbookDto {
-    //////////////////////////////
+    ////////////////
     /// ATTRIBUTS///
     ///////////////
 
@@ -113,13 +113,55 @@ public class TextbookDto {
         return userId;
     }
 
-
-
-
-
     /////////////////////////
     /// SETTER  /
     /////////////////////////
 
+    public void setIdTextbook(Long idTextbook) {
+        this.idTextbook = idTextbook;
+    }
 
+    public void setPriceTextbook(Float priceTextbook) {
+        this.priceTextbook = priceTextbook;
+    }
+
+    public void setReferenceTextbook(String referenceTextbook) {
+        this.referenceTextbook = referenceTextbook;
+    }
+
+    public void setTitleTextbook(String titleTextbook) {
+        this.titleTextbook = titleTextbook;
+    }
+
+    public void setEducationLevelTextbook(EducationLevelTextbook educationLevelTextbook) {
+        this.educationLevelTextbook = educationLevelTextbook;
+    }
+
+    public void setSubjectTextbook(SubjectTextbook subjectTextbook) {
+        this.subjectTextbook = subjectTextbook;
+    }
+
+    public void setStatusTextbook(StatusTextbook statusTextbook) {
+        this.statusTextbook = statusTextbook;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public void setYearEditionTextbook(Date yearEditionTextbook) {
+        this.yearEditionTextbook = yearEditionTextbook;
+    }
+
+    public void setEditorTextbook(EditorTextbook editorTextbook) {
+        this.editorTextbook = editorTextbook;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 }
