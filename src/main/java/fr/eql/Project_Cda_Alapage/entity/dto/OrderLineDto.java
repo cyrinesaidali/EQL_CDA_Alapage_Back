@@ -21,6 +21,9 @@ public class OrderLineDto {
         this.order = order;
     }
 
+    public OrderLineDto() {
+    }
+
     public Long getQuantityTextbook() {
         return quantityTextbook;
     }

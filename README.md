@@ -60,7 +60,7 @@ Starts by: /api/rest
 ################################################
 ## CLIENT : 
 
-## Security : 1 Bis - S'enregistrer - Client  :
+### Security : 1 Bis - S'enregistrer - Client  :
 - POST :
   {
   "lastNameUser": "Pilou",
@@ -84,12 +84,14 @@ Starts by: /api/rest
 
 
 
-### Catalog → Accéder au catalogue des manuels dispos et commencer à enregistrer une commande :
+## Catalog → Accéder au catalogue des manuels dispos et commencer à enregistrer une commande :
+##Attention à bien veiller à mettre le bon token car la gestion des commandes sont dépendantes des tokens !!!
 
-- Affichage des manuels scolaires seulement disponibles
-- GET : localhost:8080/api/rest/catalog/displayTextbooks
+#### Affichage des manuels scolaires seulement disponibles
+GET : localhost:8080/api/rest/catalog/displayTextbooks
 
-- POST : localhost:8080/api/rest/catalog/addOrder
+#### Mise en place d'un ID commande + numéro → A placer par défaut lorsque le client commence la commande
+POST : localhost:8080/api/rest/catalog/addOrder
 {
   "priceOrder": 5555,
   "numberOrder": "111111",
@@ -98,4 +100,38 @@ Starts by: /api/rest
   "reasonCancellationOrder": "REASON_CANCELLATION_ORDER_1"
 }
 
-- POST : localhost:8080/api/rest/catalog/
+#### Mise en place des lignes de commandes en fonction de la quantité de textbooks et des informations des textbooks rentrés 
+
+POST : localhost:8080/api/rest/client/order/addTextbookToOrderline
+Exemple utilisateur 1 :
+[
+{
+"idTextbook": 1,
+"priceTextbook": 3.99,
+"titleTextbook": "Titre 5555555555555555",
+"statusTextbook": "DISPONIBLE",
+"isbn": "55555555555555",
+"quantityTextbook":5
+},
+{
+"idTextbook": 5,
+"priceTextbook": 20.95,
+"titleTextbook": "Titre 77777777777777777",
+"statusTextbook": "DISPONIBLE",
+"isbn": "77777777777777777",
+"quantityTextbook":1
+}
+]
+
+Exemple utilisateur 2 :
+
+[
+{
+"idTextbook": 2,
+"priceTextbook": 3.99,
+"titleTextbook": "Titre 3333333333333",
+"statusTextbook": "DISPONIBLE",
+"isbn": "33333333333",
+"quantityTextbook": 10
+}
+]

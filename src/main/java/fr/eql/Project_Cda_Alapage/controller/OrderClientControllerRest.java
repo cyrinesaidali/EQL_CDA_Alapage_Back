@@ -4,6 +4,7 @@ import fr.eql.Project_Cda_Alapage.entity.Order;
 import fr.eql.Project_Cda_Alapage.entity.OrderLine;
 import fr.eql.Project_Cda_Alapage.entity.dto.OrderDto;
 import fr.eql.Project_Cda_Alapage.entity.dto.OrderLineDto;
+import fr.eql.Project_Cda_Alapage.entity.dto.TextbookForOrderDto;
 import fr.eql.Project_Cda_Alapage.service.OrderClientService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 
 @RestController
@@ -34,20 +37,22 @@ public class OrderClientControllerRest {
     /// Endpoints ///
     /////////////////
 
-    //Ajout d'une commande par défaut (?)
+    //Ajout d'une commande
     @PostMapping("/newOrder")
     public ResponseEntity<Order> createNewOrder(@RequestBody OrderDto orderDto) {
         Order orderToCreate = orderClientService.createNewOrder(orderDto);
         return ResponseEntity.ok(orderToCreate);
     }
 
+
     @PostMapping("/addTextbookToOrderline")
-    public ResponseEntity<OrderLine> addNewOrderline(@RequestBody OrderLineDto orderLineDto) {
-       OrderLine orderLineCreated = orderClientService.addNewOrderline(orderLineDto);
-        return ResponseEntity.ok(orderLineCreated);
+    public ResponseEntity<List<OrderLine>> addNewOrderline(@RequestBody List<TextbookForOrderDto> textbooksAddedByClientList) {
+        List<OrderLine> orderLineList = orderClientService.addNewOrderline(textbooksAddedByClientList);
+        return ResponseEntity.ok(orderLineList);
     }
 
-    ///////////////
+
+    //////////////
     /// SETTERS - Autowired ///
     ///////////////
     @Autowired

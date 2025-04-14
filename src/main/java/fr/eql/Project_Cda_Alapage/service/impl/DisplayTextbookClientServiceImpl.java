@@ -38,6 +38,7 @@ Puis, j'ajoute dans ma liste de String mes livres qui ne sont que disponibles + 
         return textbookAvailableList;
     }
 
+    //ENCORE EN TEST → A lier avec le FRONT
     @Override
     public List<Textbook> getTextbooksSelectedByClient(String login) {
         //Permet d'avoir les informations de l'utilisateur authentifié
