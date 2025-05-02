@@ -13,7 +13,7 @@
 	<artifactId>Project-Cda-Alapage</artifactId>
 	<version>1.0.0</version>
 	<name>Project-Cda-Alapage</name>
-	<description>EQL - Projet CDA - Application Alapage - Mise en place avec Spring Security</description>
+	<description>EQL - Projet CDA - Application Alapage - Mise en palce du back-end Alapage (SpringBoot, Spring Data Jpa, Spring Security)</description>
 
 	<properties>
 		<java.version>17</java.version>

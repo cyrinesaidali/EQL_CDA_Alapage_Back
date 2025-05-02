@@ -124,6 +124,7 @@ Création NewOrder en fonction de l'Id utilisateur connecté
         return allOrderlinesToAdd;
     }
 
+    //A supprimer si aucune utilité
     @Override
     public OrderLine addTextbookInOrderline(TextbookDto textbookDto) {
         User client = new User();
