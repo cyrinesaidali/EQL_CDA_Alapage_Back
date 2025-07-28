@@ -41,7 +41,7 @@ public class SpringSecurityConfig {
                 .requestMatchers("/api/rest/administrator/**").hasAuthority("ADMINISTRATOR") //pour la gestion des manuels et la gestion admin
                 .requestMatchers("/api/rest/client/**").hasAuthority("CLIENT") //pour la gestion du compte client
                 .requestMatchers("/api/rest/order/**").hasAuthority("CLIENT") //pour la gestion et mise en place des commandes
-                //.requestMatchers("/api/rest/catalog/**").hasAnyAuthority("ADMINISTRATOR", "CLIENT"); //pour l'affichage des manuels disponibles
+        //.requestMatchers("/api/rest/catalog/**").hasAnyAuthority("ADMINISTRATOR", "CLIENT"); //pour l'affichage des manuels disponibles
         ;
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return  http.build();
