@@ -1,7 +1,7 @@
 package fr.eql.Project_Cda_Alapage.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import fr.eql.Project_Cda_Alapage.entity.enums.EditorTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.EducationLevelTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.StatusTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.SubjectTextbook;
@@ -54,6 +54,10 @@ public class Textbook {
     @Column(name="photo_manuel")
     private String picture;
 
+    @Column(name="editeur_manuel")
+    @Enumerated(EnumType.STRING)
+    private EditorTextbook editorTextbook ;
+
 
     /// Jointures avec JPA
 /*
@@ -66,10 +70,6 @@ de textoBook (cf explication Jeanne)
 Ici, je veux tout récupérer d'éditeur, pour après voir ce que je veux sélectionner → FetchType : eager
 */
 
-    @ManyToOne(cascade =  {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
-    @JoinColumn(name="id_editeur")
-    private EditorTextbook editorTextbook;
-
     @OneToMany(mappedBy = "textbook")
     private List<OrderLine> orderLineListTwo = new ArrayList<>();
 
@@ -79,7 +79,7 @@ Ici, je veux tout récupérer d'éditeur, pour après voir ce que je veux sélec
 /// CONSTRUCTEUR SURCHARGÉ ///
 //////////////////////////////
 
-    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, String picture) {
+    public Textbook(Long idTextbook, Float priceTextbook, String referenceTextbook, String titleTextbook, EducationLevelTextbook educationLevelTextbook, SubjectTextbook subjectTextbook, StatusTextbook statusTextbook, String isbn, Date yearEditionTextbook, EditorTextbook editorTextbook,  String picture) {
         this.idTextbook = idTextbook;
         this.priceTextbook = priceTextbook;
         this.referenceTextbook = referenceTextbook;
@@ -89,6 +89,7 @@ Ici, je veux tout récupérer d'éditeur, pour après voir ce que je veux sélec
         this.statusTextbook = statusTextbook;
         this.isbn = isbn;
         this.yearEditionTextbook = yearEditionTextbook;
+        this.editorTextbook = editorTextbook;
         this.picture = picture;
     }
 

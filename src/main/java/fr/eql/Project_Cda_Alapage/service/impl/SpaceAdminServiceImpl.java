@@ -41,6 +41,7 @@ public class SpaceAdminServiceImpl implements SpaceAdminService {
                 textbookDto.getStatusTextbook(),
                 textbookDto.getIsbn(),
                 textbookDto.getYearEditionTextbook(),
+                textbookDto.getEditorTextbook(),
                 textbookDto.getPicture()
                 );
         return textbookRepository.save(textbookAdded);

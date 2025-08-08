@@ -1,6 +1,7 @@
 package fr.eql.Project_Cda_Alapage.entity.dto;
 
-import fr.eql.Project_Cda_Alapage.entity.EditorTextbook;
+
+import fr.eql.Project_Cda_Alapage.entity.enums.EditorTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.EducationLevelTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.StatusTextbook;
 import fr.eql.Project_Cda_Alapage.entity.enums.SubjectTextbook;

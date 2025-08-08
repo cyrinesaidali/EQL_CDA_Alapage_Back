@@ -109,6 +109,7 @@ Création NewOrder en fonction de l'Id utilisateur connecté
                     eachTextbookDto.getStatusTextbook(),
                     eachTextbookDto.getIsbn(),
                     eachTextbookDto.getYearEditionTextbook(),
+                    eachTextbookDto.getEditorTextbook(),
                     eachTextbookDto.getPicture());
             OrderLineDto orderLineDto = new OrderLineDto();
             //3 - Ajout de ligne Order
